@@ -1,0 +1,35 @@
+/*Estilos de la pagina de contacto*/
+
+.contactoContenido {
+  display: grid;
+  width: 70%;
+  margin-left: 15%;
+  grid-template-areas: "imagen formulario";
+  justify-content: center;
+  align-items: center;
+  .imagenContacto {
+    grid-area: imagen;
+    padding: 30px;
+    img {
+      padding: 10px;
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .formularioContacto {
+    grid-area: formulario;
+  }
+  #tituloContacto {
+    color: white;
+    font: bold;
+    text-align: center;
+    font-family: "CaviarDreams";
+  }
+}
+
+@media (max-width: 544px) {
+  .contactoContenido {
+    grid-template-areas: "formulario" "imagen";
+  }
+}

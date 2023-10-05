@@ -1,0 +1,30 @@
+body {
+    background-color: #213555;
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  header {
+    background-color: #F0F0F0;
+    padding: 10px;
+    text-align: center;
+    color: black;
+  }
+  footer {
+    background-color: #E5D283;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .card {
+    background-color: #4F709C;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+  }

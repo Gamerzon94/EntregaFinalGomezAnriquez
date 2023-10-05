@@ -1,0 +1,29 @@
+/*Estilos del header*/
+
+header {
+  background-color: map-get($coloresPrincipales, primero);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: $colorLetraTitulo;
+  #titulo {
+    font-size: 30px;
+    margin: 10px;
+    font-weight: bold;
+    padding-top: 15px;
+  }
+  .redes-sociales {
+    display: flex;
+    align-items: center;
+    a {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 544px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+}

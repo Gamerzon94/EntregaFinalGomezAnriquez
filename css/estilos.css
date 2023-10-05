@@ -1,30 +1,632 @@
-body {
-    background-color: #213555;
-    color: #FFFFFF;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
+/*Imports*/ /*varaibles*/ /*Fuentes locales*/
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Geologica:wght@400;700&family=Poppins:wght@200&display=swap");
+@font-face {
+  font-family: "CaviarDreams";
+  src: url("../fonts/CaviarDreams.ttf");
+}
+/*Fuentes via cdn*/
+/*Estilos del header*/
+header {
+  background-color: #071952;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+header #titulo {
+  font-size: 30px;
+  margin: 10px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+header .redes-sociales {
+  display: flex;
+  align-items: center;
+}
+header .redes-sociales a {
+  margin-right: 10px;
+}
+
+@media (max-width: 544px) {
   header {
-    background-color: #F0F0F0;
-    padding: 10px;
-    text-align: center;
-    color: black;
+    flex-direction: column;
+    align-items: center;
   }
+}
+/*Estilos del footer*/
+footer {
+  display: grid;
+  background-color: #025464;
+  padding: 10px;
+  text-align: center;
+  bottom: 0;
+  grid-template-areas: "menu copyright return";
+}
+footer p {
+  font-family: "CaviarDreams";
+  color: white;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+}
+footer .footer-menu {
+  grid-area: menu;
+  display: flex;
+  flex-direction: column;
+  font-family: "CaviarDreams";
+}
+footer .footer-copyright {
+  grid-area: copyright;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+footer .footer-subir {
+  grid-area: return;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 544px) {
   footer {
-    background-color: #E5D283;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    grid-template-areas: "menu" "copyright" "return";
   }
-  .card {
-    background-color: #4F709C;
-    color: #FFFFFF;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    width: 200px;
-    display: inline-block;
-    text-align: center;
+}
+/*Estilos de la navegacion*/
+nav {
+  background-color: #0b666a;
+}
+
+#navbarSupportedContent ul li a {
+  color: white;
+}
+
+/*Estilos de formularios */
+.formularioContacto {
+  font-style: normal;
+  font-family: "CaviarDreams";
+}
+.formularioContacto #formulario #botones {
+  display: flex;
+  justify-content: center;
+}
+.formularioContacto #formulario #botones button {
+  margin: 10px;
+  background-color: #071952;
+  border: #071952;
+}
+.formularioContacto #formulario #botones input {
+  margin: 10px;
+  background-color: #35a29f;
+  border: #35a29f;
+}
+.formularioContacto #btnEnviar {
+  text-align: center;
+}
+
+/*Estilos del Index*/
+#ContenidoPrincipal {
+  display: grid;
+  width: 70%;
+  margin-left: 15%;
+  grid-template-areas: "contenido" "contenidoClima";
+  justify-content: center;
+  align-items: center;
+}
+#ContenidoPrincipal .contenidoInferior {
+  grid-area: contenido;
+  margin: 30px;
+  display: grid;
+  grid-template-areas: "noticia aside";
+  align-items: center;
+  justify-content: center;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias {
+  grid-area: noticia;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia1 {
+  margin-bottom: 20px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/fondo.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  font-family: "Cairo";
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
+  align-items: center;
+  transition: transform 0.5s;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia1 h2 {
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia1 h4 {
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia1 p {
+  color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia1 p a {
+  text-decoration: none;
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia1:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia2 {
+  margin-bottom: 20px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/servicio2.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  font-family: "Cairo";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  transition: transform 0.5s;
+  padding: 20px;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia2 h2 {
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia2 h4 {
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia2 p {
+  color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia2 p a {
+  text-decoration: none;
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior .contenedor-noticias .blog-noticia2:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+#ContenidoPrincipal .contenidoInferior #resumenNoticias {
+  grid-area: aside;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/personal.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  padding: 20px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  font-family: "Cairo";
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
+  align-items: center;
+  transition: transform 0.5s;
+}
+#ContenidoPrincipal .contenidoInferior #resumenNoticias h2 {
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior #resumenNoticias h4 {
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior #resumenNoticias p {
+  color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+#ContenidoPrincipal .contenidoInferior #resumenNoticias p a {
+  text-decoration: none;
+  color: white;
+}
+#ContenidoPrincipal .contenidoInferior #resumenNoticias:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+#ContenidoPrincipal .servicioImagenIzquierda {
+  padding: 20px;
+  display: grid;
+  grid-area: "contenidoClima";
+  grid-template-areas: "aside texto";
+  background-image: linear-gradient(#071952, #0d2a88);
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+}
+#ContenidoPrincipal .servicioImagenIzquierda aside {
+  grid-area: aside;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+#ContenidoPrincipal .servicioImagenIzquierda aside img {
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+#ContenidoPrincipal .servicioImagenIzquierda .contenidoServicio {
+  grid-area: texto;
+  padding: 20px;
+  grid-area: texto;
+  font-family: "Cairo";
+}
+
+#Carrusel {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  grid-area: carrusel;
+}
+#Carrusel #carouselExampleCaptions .carousel-item img {
+  max-height: 100%;
+  margin: 0 auto;
+}
+#Carrusel #carouselExampleCaptions .carousel-caption {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+#Carrusel #carouselExampleCaptions h5 {
+  color: black;
+  font-weight: bold;
+  font-family: Geologica;
+}
+#Carrusel #carouselExampleCaptions p {
+  color: black;
+  font-weight: bold;
+  font-family: Geologica;
+}
+
+@media (max-width: 544px) {
+  #ContenidoPrincipal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
   }
+  #ContenidoPrincipal .contenidoInferior {
+    width: 70%;
+    display: grid;
+    grid-template-areas: "noticia" "aside";
+  }
+}
+/*Estilos de la pagina de noticia*/
+.contenidoNoticias {
+  display: grid;
+  width: 70%;
+  margin-left: 15%;
+  justify-content: center;
+  align-items: center;
+}
+.contenidoNoticias .contenedorNoticias {
+  width: 100%;
+  display: grid;
+  padding: 50px 0;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+.contenidoNoticias .contenedorNoticias .noticia {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(170, 170, 170);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-direction: column;
+  margin: 10px;
+  transition: transform 0.5s;
+  text-align: justify;
+  padding: 10px;
+}
+.contenidoNoticias .contenedorNoticias .noticia h2 {
+  font-family: "Franklin Gothic Medium";
+  color: white;
+}
+.contenidoNoticias .contenedorNoticias .noticia h4 {
+  font-family: "Poppins";
+  color: white;
+}
+.contenidoNoticias .contenedorNoticias .noticia p {
+  font-family: "Poppins";
+  color: white;
+}
+.contenidoNoticias .contenedorNoticias .noticia:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.contenidoNoticias .contenedorNoticias #noticia1 {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/Recuerdennos.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.contenidoNoticias .contenedorNoticias #noticia2 {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/brechacontencion.png);
+  background-size: cover;
+  background-position: center;
+}
+.contenidoNoticias .contenedorNoticias #noticia3 {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/administrador.png);
+  background-size: cover;
+  background-position: center;
+}
+.contenidoNoticias .contenedorNoticias #noticia4 {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/fiesta.png);
+  background-size: cover;
+  background-position: center;
+}
+.contenidoNoticias .contenedorNoticias #noticia5 {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/mani.png);
+  background-size: cover;
+  background-position: center;
+}
+.contenidoNoticias .contenedorNoticias #noticia6 {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #071952), url(../img/puesto.png);
+  background-size: cover;
+  background-position: center;
+}
+.contenidoNoticias #paginasNoticias {
+  display: grid;
+  justify-content: center;
+  font-family: "Poppins";
+}
+.contenidoNoticias #paginasNoticias ul.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.contenidoNoticias #paginasNoticias li.page-item {
+  margin: 5px;
+}
+.contenidoNoticias #paginasNoticias a.page-link {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .contenidoNoticias .contenedorNoticias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 700px) {
+  .contenidoNoticias .contenedorNoticias {
+    grid-template-columns: 1fr;
+  }
+}
+/*Estilos de la pagina de contacto*/
+.contactoContenido {
+  display: grid;
+  width: 70%;
+  margin-left: 15%;
+  grid-template-areas: "imagen formulario";
+  justify-content: center;
+  align-items: center;
+}
+.contactoContenido .imagenContacto {
+  grid-area: imagen;
+  padding: 30px;
+}
+.contactoContenido .imagenContacto img {
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+.contactoContenido .formularioContacto {
+  grid-area: formulario;
+}
+.contactoContenido #tituloContacto {
+  color: white;
+  font: bold;
+  text-align: center;
+  font-family: "CaviarDreams";
+}
+
+@media (max-width: 544px) {
+  .contactoContenido {
+    grid-template-areas: "formulario" "imagen";
+  }
+}
+/*Estilos de la pagina de servicios*/
+#cuerpoServicios {
+  display: grid;
+  width: 70%;
+  margin-left: 15%;
+  grid-template-areas: "servicio1" "servicio2" "servicio3";
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+#cuerpoServicios #servicio1 {
+  grid-area: servicio1;
+}
+#cuerpoServicios #servicio2 {
+  grid-area: servicio2;
+}
+#cuerpoServicios #servicio3 {
+  grid-area: servicio3;
+}
+#cuerpoServicios .servicioImagenIzquierda {
+  padding: 20px;
+  display: grid;
+  grid-template-areas: "aside texto";
+  background-image: linear-gradient(#071952, #0d2a88);
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+}
+#cuerpoServicios .servicioImagenIzquierda aside {
+  grid-area: aside;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cuerpoServicios .servicioImagenIzquierda aside img {
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+#cuerpoServicios .servicioImagenIzquierda .contenidoServicio {
+  grid-area: texto;
+  padding: 20px;
+  grid-area: texto;
+  font-family: "Cairo";
+}
+#cuerpoServicios .servicioImagenDerecha {
+  padding: 20px;
+  display: grid;
+  grid-template-areas: "texto aside";
+  background-image: linear-gradient(#071952, #0d2a88);
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+}
+#cuerpoServicios .servicioImagenDerecha aside {
+  grid-area: aside;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cuerpoServicios .servicioImagenDerecha aside img {
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+#cuerpoServicios .servicioImagenDerecha .contenidoServicio {
+  grid-area: texto;
+  padding: 20px;
+  grid-area: texto;
+  font-family: "Cairo";
+}
+
+@media (max-width: 544px) {
+  #cuerpoServicios .servicioImagenIzquierda {
+    grid-template-areas: "aside" "texto";
+  }
+  #cuerpoServicios .servicioImagenDerecha {
+    grid-template-areas: "aside" "texto";
+  }
+}
+/*Estilos de la pagina Sobre Nosotros*/
+#contenidoSobreNosotros {
+  display: grid;
+  width: 70%;
+  margin-left: 15%;
+  grid-template-areas: "video" "contenido";
+  justify-content: center;
+  align-items: center;
+}
+#contenidoSobreNosotros p {
+  font-family: "Cairo";
+}
+#contenidoSobreNosotros #videoBienvenida {
+  grid-area: video;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+#contenidoSobreNosotros #sobreNosotros {
+  grid-area: contenido;
+  background-color: rgb(65, 65, 65);
+  border-radius: 10px;
+  display: grid;
+  grid-template-areas: "titulo titulo" "descripcion aside" "organigrama organigrama";
+  margin: 30px;
+  text-align: justify;
+}
+#contenidoSobreNosotros #sobreNosotros h2 {
+  margin: 10px;
+  color: white;
+  font: bold;
+}
+#contenidoSobreNosotros #sobreNosotros p {
+  color: white;
+}
+#contenidoSobreNosotros #sobreNosotros #tituloSobreNostros {
+  grid-area: titulo;
+  justify-self: center;
+}
+#contenidoSobreNosotros #sobreNosotros #descripcionSobreNostros {
+  grid-area: descripcion;
+  margin: 20px;
+}
+#contenidoSobreNosotros #sobreNosotros #imagenNosotros {
+  background-color: transparent;
+  margin: 10px;
+  grid-area: aside;
+  margin-top: 20%;
+}
+#contenidoSobreNosotros #sobreNosotros #imagenNosotros img {
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+#contenidoSobreNosotros #sobreNosotros #organigrama {
+  grid-area: organigrama;
+  display: grid;
+  margin: 0 30px 30px 30px;
+  grid-template-areas: "titulo titulo titulo" "primer primer primer" "segundo segundo segundo";
+  justify-content: center;
+}
+#contenidoSobreNosotros #sobreNosotros #organigrama #tituloOrganigrama {
+  grid-area: titulo;
+  justify-self: center;
+}
+#contenidoSobreNosotros #sobreNosotros #parteSuperior {
+  grid-area: primer;
+  justify-self: center;
+}
+#contenidoSobreNosotros #sobreNosotros #divisiones div {
+  grid-area: segundo;
+  display: inline-block;
+}
+#contenidoSobreNosotros #sobreNosotros .caja {
+  width: 230px;
+  height: 230px;
+  background-color: grey;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  text-align: center;
+  transition: 0.5s;
+}
+#contenidoSobreNosotros #sobreNosotros .caja:hover {
+  transform: scale(0.9);
+  box-shadow: 0 0 10px rgb(22, 22, 22);
+}
+
+@media (max-width: 544px) {
+  #contenidoSobreNosotros #sobreNosotros {
+    grid-template-areas: "titulo" "aside" "descripcion" "organigrama";
+  }
+  #divisiones {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/*Estilos del body para todas las paginas*/
+body {
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient(#0b666a, #97feed);
+}
+
+section {
+  padding: 20px;
+}
+
+/*# sourceMappingURL=estilos.css.map */

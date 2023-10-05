@@ -1,0 +1,106 @@
+/*Estilos de la pagina Sobre Nosotros*/
+
+#contenidoSobreNosotros {
+  display: grid;
+  width: 70%;
+  margin-left: 15%;
+  grid-template-areas: "video" "contenido";
+  justify-content: center;
+  align-items: center;
+  p {
+    font-family: "Cairo";
+  }
+  #videoBienvenida {
+    grid-area: video;
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+  }
+  #sobreNosotros {
+    grid-area: contenido;
+    background-color: rgb(65, 65, 65);
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas: "titulo titulo" "descripcion aside" "organigrama organigrama";
+    margin: 30px;
+    text-align: justify;
+    h2 {
+      margin: 10px;
+      color: white;
+      font: bold;
+    }
+    p {
+      color: white;
+    }
+    #tituloSobreNostros {
+      grid-area: titulo;
+      justify-self: center;
+    }
+    #descripcionSobreNostros {
+      grid-area: descripcion;
+      margin: 20px;
+    }
+    #imagenNosotros {
+      background-color: transparent;
+      margin: 10px;
+      grid-area: aside;
+      margin-top: 20%;
+      img {
+        padding: 10px;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+      }
+    }
+    #organigrama {
+      grid-area: organigrama;
+      display: grid;
+      margin: 0 30px 30px 30px;
+      grid-template-areas:
+        "titulo titulo titulo"
+        "primer primer primer"
+        "segundo segundo segundo";
+      justify-content: center;
+      #tituloOrganigrama {
+        grid-area: titulo;
+        justify-self: center;
+      }
+    }
+    #parteSuperior {
+      grid-area: primer;
+      justify-self: center;
+    }
+    #divisiones {
+      div {
+        grid-area: segundo;
+        display: inline-block;
+      }
+    }
+    .caja {
+      width: 230px;
+      height: 230px;
+      background-color: grey;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px;
+      text-align: center;
+      transition: 0.5s;
+      &:hover {
+        transform: scale(0.9);
+        box-shadow: 0 0 10px rgb(22, 22, 22);
+      }
+    }
+  }
+}
+
+@media (max-width: 544px) {
+  #contenidoSobreNosotros {
+    #sobreNosotros {
+      grid-template-areas: "titulo" "aside" "descripcion" "organigrama";
+    }
+  }
+  #divisiones {
+    display: flex;
+    flex-direction: column;
+  }
+}

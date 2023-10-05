@@ -1,0 +1,26 @@
+/*Imports*/
+@import "./utilities/variables";
+@import "./base/typo";
+@import "./layout/header";
+@import "./layout/footer";
+@import "./layout/navigation";
+@import "./layout/forms";
+@import "./views/index";
+@import "./views/noticias";
+@import "./views/contacto";
+@import "./views/servicios";
+@import "./views/sobreNosotros";
+
+/*Estilos del body para todas las paginas*/
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient(
+    map-get($coloresPrincipales, segundo),
+    map-get($coloresPrincipales, cuarto)
+  );
+}
+
+section {
+  padding: 20px;
+}

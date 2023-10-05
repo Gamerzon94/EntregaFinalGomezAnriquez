@@ -1,5 +1,42 @@
 //declaracion de variables
-let nombre = '';
+let imagenClima;
+let tituloClima;
+let descripcionClima;
+let tempMin;
+let tempMax;
+let tempAct;
+//funciones
+function mostrar_posicion( posicion ){
+
+    imagenClima = document.getElementById("imagenClima");
+    console.log(imagenClima);
+    tituloClima = document.getElementById("tituloClima");
+    descripcionClima = document.getElementById("descripcionClima");
+    tempMin = document.getElementById("tempMin");
+    tempMax = document.getElementById("tempMax");
+    tempAct = document.getElementById("tempAct");
+
+    let lat = posicion.coords.latitude;
+    let long = posicion.coords.longitude;
+    let key = "59d4800eb2a16276f353ba1432ebfbf4";
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}&units=metric&lang=es`)
+        .then( response => response.json() )
+        .then( data =>{ 
+                        console.log(data);
+                        imagenClima.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="ImagenClima"/>`;
+                        tituloClima.innerHTML = `${data.name}`;
+                        descripcionClima.innerHTML = `${data.weather[0].description}`;
+                        tempMin.innerHTML = `Temperatura minima: ${data.main.temp_min} C°`;
+                        tempMax.innerHTML = `Temperatura maxima: ${data.main.temp_max} C°`;
+                        tempAct.innerHTML = `Temperatura actual: ${data.main.temp} C°`;
+        } )
+
+}
+
+navigator.geolocation.getCurrentPosition( mostrar_posicion );
+//declaracion de variables
+/*let nombre = '';
 
 let opcion = '';
 
@@ -174,4 +211,4 @@ function mostrarCarrito(){
         contenidoCarrito = "<p>No hay productos agregados al carrito</p>"
     }
     contenedor.innerHTML = contenidoCarrito;
-}
+}*/

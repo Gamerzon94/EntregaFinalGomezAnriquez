@@ -1,0 +1,45 @@
+/*Estilos del footer*/
+
+footer {
+  display: grid;
+  background-color: #025464;
+  padding: 10px;
+  text-align: center;
+  bottom: 0;
+  grid-template-areas: "menu copyright return";
+  p {
+    font-family: "CaviarDreams";
+    color: white;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  .footer-menu {
+    grid-area: menu;
+    display: flex;
+    flex-direction: column;
+    font-family: "CaviarDreams";
+  }
+  .footer-copyright {
+    grid-area: copyright;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-subir {
+    grid-area: return;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 544px) {
+  footer {
+    grid-template-areas:
+      "menu"
+      "copyright"
+      "return";
+  }
+}

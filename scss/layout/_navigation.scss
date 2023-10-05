@@ -1,0 +1,14 @@
+/*Estilos de la navegacion*/
+nav {
+  background-color: map-get($coloresPrincipales, segundo);
+}
+
+#navbarSupportedContent {
+  ul {
+    li {
+      a {
+        color: white;
+      }
+    }
+  }
+}
