@@ -5,11 +5,81 @@ let descripcionClima;
 let tempMin;
 let tempMax;
 let tempAct;
+let animatronicos = [];
+let animatronicosTemp = [];
+let id = 0;
+let nombre = '';
+let descripcion = '';
+let precio = 0;
+let stock = 0;
+let image = '';
+let animatronicosJson;
+let animatronicoParseado;
+let compraAnimatronico = "";
+let carrito = [];
+let carritoAux = [];
+let listaAnimatronicos = [];
+let listaAnimatronicosCarrito = [];
+let contenidoCarrito = "";
+let totalCarrito = 0;
+let animatronico;
+//clase
+class Animatronico{
+
+    constructor(id,nombre, descripcion, precio, stock,image){
+        this.id=id;
+        this.nombre=nombre;
+        this.descripcion=descripcion;
+        this.precio=precio;
+        this.stock=stock;
+        this.image=image;
+    }
+}
 //funciones
+if(localStorage.getItem('animatronicos') === null){
+    fetch("./json/animatronicos.json")
+        .then( response => response.json() )
+        .then( data => {animatronicosJson = JSON.stringify(data);
+            localStorage.setItem("animatronicos", animatronicosJson);
+            llenarCards();} );
+        
+}else{
+    animatronicoParseado = JSON.parse(localStorage.getItem("animatronicos"));
+    if(animatronicoParseado===null){
+        fetch("./json/animatronicos.json")
+            .then( response => response.json() )
+            .then( data => {animatronicosJson = JSON.stringify(data);
+                localStorage.setItem("animatronicos", animatronicosJson);} );
+            llenarCards();
+    }else{
+        llenarCards();
+    }
+}
+
+function llenarCards(){
+    contenedor = document.getElementById("animatronicos"); //obtengo el div padre
+    if(localStorage.getItem("animatronicos")!=null){
+        animatronicoParseado = JSON.parse(localStorage.getItem("animatronicos")); //valido que existan productos
+    }
+    cards = ""; //inicializo la variable
+    for(let animatronico of animatronicoParseado){ //genero las cards segun la cantidad de productos
+        cards = cards+"<div class=\"card\">" +
+                            "<center><img src=\""+animatronico.image+"\" width=\"10%\">"+
+                            "<h3>"+animatronico.nombre+"</h3>" +
+                            "<p>"+animatronico.descripcion+"</p>" +
+                            "<p>$"+animatronico.precio+"</p>" +
+                            "<p>Stock: "+animatronico.stock+"</p>" +
+                            "<button onclick=\"agregarAlCarro('"+animatronico.nombre+"')\">Agregar al carro</button>" +
+                            "</center></div><br>";
+    }
+    if(contenedor!=null){
+        contenedor.innerHTML = cards; //envio las cards al html
+    }
+}
+
 function mostrar_posicion( posicion ){
 
     imagenClima = document.getElementById("imagenClima");
-    console.log(imagenClima);
     tituloClima = document.getElementById("tituloClima");
     descripcionClima = document.getElementById("descripcionClima");
     tempMin = document.getElementById("tempMin");
@@ -23,129 +93,22 @@ function mostrar_posicion( posicion ){
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}&units=metric&lang=es`)
         .then( response => response.json() )
         .then( data =>{ 
-                        console.log(data);
-                        imagenClima.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="ImagenClima"/>`;
-                        tituloClima.innerHTML = `${data.name}`;
-                        descripcionClima.innerHTML = `${data.weather[0].description}`;
-                        tempMin.innerHTML = `Temperatura minima: ${data.main.temp_min} C°`;
-                        tempMax.innerHTML = `Temperatura maxima: ${data.main.temp_max} C°`;
-                        tempAct.innerHTML = `Temperatura actual: ${data.main.temp} C°`;
+                        if(imagenClima!=null&&tituloClima!=null&&descripcionClima!=null){
+                            imagenClima.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="ImagenClima"/>`;
+                            tituloClima.innerHTML = `${data.name}`;
+                            descripcionClima.innerHTML = `${data.weather[0].description}`;
+                            tempMin.innerHTML = `Temperatura minima: ${data.main.temp_min} C°`;
+                            tempMax.innerHTML = `Temperatura maxima: ${data.main.temp_max} C°`;
+                            tempAct.innerHTML = `Temperatura actual: ${data.main.temp} C°`;
+                        }
         } )
 
 }
 
 navigator.geolocation.getCurrentPosition( mostrar_posicion );
-//declaracion de variables
-/*let nombre = '';
-
-let opcion = '';
-
-let seleccion = '';
-
-let dias = '';
-
-let valido = 0;
-
-let dinero = 0;
-
-let listaAnimatronicos = [];
-
-let salir = 0;
-
-let contador = 0;
-
-let compraAnimatronico = "";
-
-let animatronico;
-
-let animatronicosJson;
-
-let contenedor;
-
-let animatronicoParseado;
-
-let cards = "";
-
-let carrito = [];
-
-let carritoAux = [];
-
-let listaAnimatronicosCarrito = [];
-
-let contenidoCarrito = "";
-
-let totalCarrito = 0;
-
-let menu = `1.- [ADMINISTRACIÓN] Agregar animatronicos al Stock
-2.- Rentar un animatronico.
-3.- ¿Buscas un animatronico?
-4.- Consultar puntos de distribución.
-5.- Limpiar consola.
-6.- Finalizar.
-`;
-class Animatronico{
-
-    constructor(nombre, precio, stock){
-        this.nombre=nombre;
-        this.precio=precio;
-        this.stock=stock;
-    }
-}
-
-//declaracion de funciones
-function rentarAnimatronico(valor, dias){
-    if(listaAnimatronicos[valor-1].stock>0){
-        console.log("Usted tendra a "+listaAnimatronicos[valor-1].nombre+" por "+dias+" dia(s) por el valor de: $"+listaAnimatronicos[valor-1].precio*dias);
-        listaAnimatronicos[valor-1].stock = listaAnimatronicos[valor-1].stock-1;
-    }else{
-        console.log("Lamentamos informar que "+listaAnimatronicos[valor-1].nombre+" actualmente no tiene stock, seleccione otra opción.");
-    }
-    console.log(menu);
-}
-
-function menuAnimatronicos(){ 
-    contador = 1;
-    for(let animatronico of listaAnimatronicos){
-        if(animatronico.stock>0){
-            console.log(contador+".- "+animatronico.nombre+" $"+animatronico.precio+" x dia con stock de "+animatronico.stock);
-        }else{
-            console.log(contador+".- "+animatronico.nombre+" $"+animatronico.precio+" x dia actualmente sin stock");
-        }
-        contador++;
-    }
-}
 
 function buscarAnimatronico(animatronico){
     return animatronico.nombre == compraAnimatronico;
-}
-
-function agregarAnimatronico() { //funcion que agrega los productos al localStorage
-    nombre = document.getElementById('nombre').value;
-    precio = document.getElementById('precio').value;
-    stock = document.getElementById('stock').value;
-    animatronico = new Animatronico(nombre,precio,stock);
-    listaAnimatronicos.push(animatronico);
-    animatronicosJson = JSON.stringify(listaAnimatronicos);
-    localStorage.setItem("animatronicosActuales", animatronicosJson);
-    llenarCards();
-    event.preventDefault(); //evito que la pagina se recargue luego de que se ejecute el formulario
-}
-
-function llenarCards(){
-    contenedor = document.getElementById("animatronicos"); //obtengo el div padre
-    if(localStorage.getItem("animatronicosActuales")!=null){
-        animatronicoParseado = JSON.parse(localStorage.getItem("animatronicosActuales")); //valido que existan productos
-    }
-    cards = ""; //inicializo la variable
-    for(let animatronico of animatronicoParseado){ //genero las cards segun la cantidad de productos
-        cards = cards+"<div class=\"card\">" +
-                            "<h3>"+animatronico.nombre+"</h3>" +
-                            "<p>$"+animatronico.precio+"</p>" +
-                            "<p>Stock: "+animatronico.stock+"</p>" +
-                            "<button onclick=\"agregarAlCarro('"+animatronico.nombre+"')\">Agregar al carro</button>" +
-                            "</div>";
-    }
-    contenedor.innerHTML = cards; //envio las cards al html
 }
 
 function agregarAlCarro(nombre){ //funcion que agrega al carrito
@@ -157,23 +120,103 @@ function agregarAlCarro(nombre){ //funcion que agrega al carrito
         carrito = null; //si no existe carrito controlo que no este inicializado
     }
     listaAnimatronicosCarrito = [];
-    if(localStorage.getItem("animatronicosActuales")!=null){
-        animatronicoParseado = JSON.parse(localStorage.getItem("animatronicosActuales")); //recupero todos los productos
+    if(localStorage.getItem("animatronicos")!=null){
+        animatronicoParseado = JSON.parse(localStorage.getItem("animatronicos")); //recupero todos los productos
     }
     let resultadoBusqueda = animatronicoParseado.find(buscarAnimatronico); //busco el producto
     if(resultadoBusqueda!=null){
         if(carrito!=null){
             for(let animatronicoAux of carrito){ //recorro el carrito
-                animatronico = new Animatronico(animatronicoAux.nombre,animatronicoAux.precio,animatronicoAux.stock);
+                animatronico = new Animatronico(animatronicoAux.id,animatronicoAux.nombre,animatronicoAux.descripcion,animatronicoAux.precio,animatronicoAux.stock,animatronicoAux.image);
                 listaAnimatronicosCarrito.push(animatronico);
             }
-            listaAnimatronicosCarrito.push(resultadoBusqueda); //agrego el nuevo producto
+            if(resultadoBusqueda.stock>0){
+                listaAnimatronicosCarrito.push(resultadoBusqueda); //agrego el nuevo producto
+                animatronicosTemp = [];
+                for(let animatronicoAux of animatronicoParseado){ //recorro el carrito
+                    if(resultadoBusqueda.nombre==animatronicoAux.nombre){
+                        animatronico = new Animatronico(animatronicoAux.id,animatronicoAux.nombre,animatronicoAux.descripcion,animatronicoAux.precio,animatronicoAux.stock-1,animatronicoAux.image);
+                        animatronicosTemp.push(animatronico);
+                    }else{
+                        animatronicosTemp.push(animatronicoAux);
+                    }
+                }
+                animatronicosJson = JSON.stringify(animatronicosTemp);
+                localStorage.setItem("animatronicos", animatronicosJson);
+                llenarCards();
+                Toastify({
+                    text:"Producto agregado",
+                    duration:2000,
+                    gravity:"bottom",
+                    position:"left",
+                    style:{
+                        fontSize:"25px",
+                        fontFamily:"Verdana",
+                        color:"green",
+                        background:"black"
+                    }
+            
+                }).showToast();
+            }else{
+                Toastify({
+                    text:"Producto sin stock",
+                    duration:2000,
+                    gravity:"bottom",
+                    position:"left",
+                    style:{
+                        fontSize:"25px",
+                        fontFamily:"Verdana",
+                        color:"red",
+                        background:"black"
+                    }
+            
+                }).showToast();
+            }
             sessionStorage.setItem('animatronicosCarro',JSON.stringify(listaAnimatronicosCarrito)); //guardo el carrito en la sesion
         }else{
-            animatronico = new Animatronico(resultadoBusqueda.nombre,resultadoBusqueda.precio,resultadoBusqueda.stock); //si el carrito no existe agrego por primera vez
+            animatronico = new Animatronico(resultadoBusqueda.id,resultadoBusqueda.nombre,resultadoBusqueda.descripcion,resultadoBusqueda.precio,resultadoBusqueda.stock,resultadoBusqueda.image); //si el carrito no existe agrego por primera vez
             listaAnimatronicosCarrito.push(animatronico);
             sessionStorage.setItem('animatronicosCarro',JSON.stringify(listaAnimatronicosCarrito));
+            animatronicosTemp = [];
+            for(let animatronicoAux of animatronicoParseado){ //recorro el carrito
+                if(resultadoBusqueda.nombre==animatronicoAux.nombre){
+                    animatronico = new Animatronico(animatronicoAux.id,animatronicoAux.nombre,animatronicoAux.descripcion,animatronicoAux.precio,animatronicoAux.stock-1,animatronicoAux.image);
+                    animatronicosTemp.push(animatronico);
+                }else{
+                    animatronicosTemp.push(animatronicoAux);
+                }
+            }
+            animatronicosJson = JSON.stringify(animatronicosTemp);
+            localStorage.setItem("animatronicos", animatronicosJson);
+            llenarCards();
+            Toastify({
+                text:"Producto agregado",
+                duration:2000,
+                gravity:"bottom",
+                position:"left",
+                style:{
+                    fontSize:"25px",
+                    fontFamily:"Verdana",
+                    color:"green",
+                    background:"black"
+                }
+        
+            }).showToast();
         }
+    }else{
+        Toastify({
+            text:"Error al agregar producto",
+            duration:2000,
+            gravity:"bottom",
+            position:"left",
+            style:{
+                fontSize:"25px",
+                fontFamily:"Verdana",
+                color:"red",
+                background:"black"
+            }
+    
+        }).showToast();
     }
 }
 
@@ -186,15 +229,15 @@ function mostrarCarrito(){
     }else{
         carritoAux = null; //si no existe carrito controlo que no este inicializado
     }
-    if(localStorage.getItem("animatronicosActuales")!=null){
-        animatronicoParseado = JSON.parse(localStorage.getItem("animatronicosActuales")); //recupero todos los productos
+    if(localStorage.getItem("animatronicos")!=null){
+        animatronicoParseado = JSON.parse(localStorage.getItem("animatronicos")); //recupero todos los productos
     }else{
         animatronicoParseado = null;
     }
     let contarNombres = {};
     if(carritoAux!=null){
-        carrito.forEach(animatronico => {
-            let nombre = animatronico.nombre;
+        carritoAux.forEach(animatronicoForEach => {
+            let nombre = animatronicoForEach.nombre;
             contarNombres[nombre] = (contarNombres[nombre] || 0) + 1;
         });
         for (let clave in contarNombres) { //cuento cuantas veces tengo los productos en el carro
@@ -211,4 +254,68 @@ function mostrarCarrito(){
         contenidoCarrito = "<p>No hay productos agregados al carrito</p>"
     }
     contenedor.innerHTML = contenidoCarrito;
-}*/
+    carritoAux=[];
+}
+
+function agregarAnimatronico() { //funcion que agrega los productos al localStorage
+    id = document.getElementById('id').value;
+    nombre = document.getElementById('nombre').value;
+    descripcion = document.getElementById('descripcion').value;
+    precio = document.getElementById('precio').value;
+    stock = document.getElementById('stock').value;
+    image = document.getElementById('image').value;
+    if((id===null||id==='')||(nombre===null||nombre==='')||(descripcion===null||descripcion==='')||(precio===null||precio==='')||(stock===null||stock==='')||(image===null||image==='')){
+        Toastify({
+            text:"Revise los datos del nuevo animatronico",
+            duration:2000,
+            gravity:"bottom",
+            position:"left",
+            style:{
+                fontSize:"25px",
+                fontFamily:"Verdana",
+                color:"red",
+                background:"black"
+            }
+    
+        }).showToast();
+    }else{
+        listaAnimatronicos=[];
+        animatronico = new Animatronico(id,nombre,descripcion,precio,stock,image);
+        if(localStorage.getItem('animatronicos') === null){
+            listaAnimatronicos.push(animatronico);
+            animatronicosJson = JSON.stringify(listaAnimatronicos);
+            localStorage.setItem("animatronicos", animatronicosJson);
+        }else{
+            animatronicoParseado = JSON.parse(localStorage.getItem("animatronicos"));
+            if(animatronicoParseado===null){
+                listaAnimatronicos.push(animatronico);
+                animatronicosJson = JSON.stringify(listaAnimatronicos);
+                localStorage.setItem("animatronicos", animatronicosJson);
+            }else{
+                animatronicoParseado.push(animatronico);
+                animatronicosJson = JSON.stringify(animatronicoParseado);
+                localStorage.setItem("animatronicos", animatronicosJson);
+            }
+        }
+        document.getElementById('id').value ='';
+        document.getElementById('nombre').value ='';
+        document.getElementById('descripcion').value ='';
+        document.getElementById('precio').value ='';
+        document.getElementById('stock').value ='';
+        document.getElementById('image').value ='';
+        Toastify({
+            text:"Animatronico añadido",
+            duration:2000,
+            gravity:"bottom",
+            position:"left",
+            style:{
+                fontSize:"25px",
+                fontFamily:"Verdana",
+                color:"green",
+                background:"black"
+            }
+    
+        }).showToast();
+        event.preventDefault(); //evito que la pagina se recargue luego de que se ejecute el formulario
+    }
+}

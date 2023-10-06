@@ -1,0 +1,34 @@
+[
+    {
+    "id": 1,
+    "nombre": "Freddy Fazbear",
+    "precio": 1500,
+    "stock": 500,
+    "descripcion": "Freddy Fazbear es uno de los animatrónicos originales de la serie, así como la mascota de Freddy Fazbear's Pizza y el cantante principal de la banda.",
+    "image": "https://www3.minijuegosgratis.com/v3/games/thumbnails/209606_7_sq.jpg"
+    },
+    {
+    "id": 2,
+    "nombre": "Bonnie",
+    "precio": 1000,
+    "stock": 150,
+    "descripcion": "Bonnie (también conocido como Bonnie The Bunny/Bonnie The Rabbit) es uno de los principales antagonistas de la serie Five Nights at Freddy's. Bonnie es un conejo animatrónico y animador infantil que se encuentra en Freddy Fazbear's Pizza, junto con Freddy Fazbear y Chica. Es el guitarrista de la banda.",
+    "image": "https://i.pinimg.com/736x/53/c5/e3/53c5e3d54da7209873a79fd0f6b5cb11.jpg"
+    },
+    {
+    "id": 3,
+    "nombre": "Chica",
+    "precio": 990,
+    "stock": 5,
+    "descripcion": "Chica (abreviado de Chica the Chicken (Chica el Pollo)) es uno de los animatrónicos originales de la serie. Ella es una animadora infantil ubicada en Freddy Fazbear's Pizza, junto con Freddy Fazbear y Bonnie. Ella es la cantante de apoyo, así como la que anima a los niños a comer.",
+    "image": "https://www.pockettactics.com/wp-content/sites/pockettactics/2023/03/fnaf-chica-2.jpeg"
+    },
+    {
+    "id": 4,
+    "nombre": "Foxy",
+    "precio": 700,
+    "stock": 1,
+    "descripcion": "Foxy (conocido también como Foxy The Pirate) es uno de los cinco animatrónicos originales de los juegos, usados como entretenimiento en Freddy Fazbear's Pizza. Es reconocido por poseer su propia atracción, la Pirate Cove (Bovedilla del pirata), separándole de la banda principal. Sin embargo esta atracción, así como su animatrónico estrella, siempre estuvieron Fuera de Servicio por razones no muy claras.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS90WD1C2lDqZJQKK9MBbgQ0r2tQkeqY7-yzg&usqp=CAU"
+    }
+]
